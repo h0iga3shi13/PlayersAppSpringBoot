@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>ユーザー情報一覧</title>
+    <link href="/addlist.css" rel="stylesheet"></link>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+  <!-- th:replaceを使用して、 ヘッダー用のフラグメントを読込みます -->
+  <div th:replace="common :: header_fragment"></div>
+  	<h1>ユーザー情報一覧</h1>
+  	<div><a th:href="@{/add}">新規登録はこちら</a></div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>ユーザー名</th>
+				<th>所属チーム名</th>
+				<th>電話番号</th>
+				<th>メールアドレス</th>
+				<th>住所</th>
+				<th>守れるポジション</th>
+				<th>パスワード</th>
+				<th>更新日時</th>
+				<th>登録日時</th>
+				<th>削除日時</th>
+				<th colspan="2">ユーザー情報削除</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <tr th:each="user : ${userlist}" th:object="${user}">
+		        <td class="center" th:text="*{id}"></td>
+		        <td th:text="*{name}"></td>
+		        <td th:text="*{team}"></td>
+		        <td class="center" th:text="*{phone}"></td>
+		        <td class="center" th:text="*{email}"></td>
+		        <td class="center" th:text="*{address}"></td>
+		        <td class="center" th:text="*{position}"></td>
+		        <td class="center" th:text="*{password}"></td>
+		        <td class="center" th:text="${#temporals.format(updateDate, 'yyyy/MM/dd')}"></td>
+		        <td class="center" th:text="${#temporals.format(createDate, 'yyyy/MM/dd')}"></td>
+		        <td class="center" th:text="${#temporals.format(deleteDate, 'yyyy/MM/dd')}"></td>
+		    <td>
+			    <form th:action="@{/adddelete}" method="post">
+			        <!-- 会員情報削除ボタン -->
+			        <input type="submit" class="btn btn-outline-danger" name="delete" value="削除">
+			        <input type="hidden" name="id" th:value="${user.id}">
+			    </form>
+			</td>
+		    </tr>
+	    </tbody>
+	</table>
+  </body>
+</html>

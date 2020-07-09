@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>confirm</title>
+</head>
+<body>
+  <!-- th:replaceを使用して、 ヘッダー用のフラグメントを読込みます -->
+  <div th:replace="common :: header_fragment"></div>
+	<h1>確認用ページ</h1>
+	<form th:action="@{/addcreate}" th:object="${addRequest}" method="post">
+		<div th:object="${addRequest}">
+		  <div>
+		    <label for="name">ユーザー名</label><br />
+		    <p th:text="*{name}">name</p>
+		  </div>
+		  <div>
+		    <label for="team">所属チーム名（無所属の場合は”所属なし”）</label><br />
+		    <p th:text="*{team}">team</p>
+		  </div>
+		  <div>
+		    <label for="phone">電話番号</label><br />
+		    <td th:text="*{phone}"></td>
+		  </div>
+		  <div>
+		    <label for="email">メールアドレス</label><br />
+		    <td th:text="*{email}"></td>
+		  </div>
+		  <div>
+		    <label for="address">住所</label><br />
+		    <p th:text="*{address}">area</p>
+		  </div>
+	  	  <div>
+		    <label for="position">守れるポジション（複数可）</label><br />
+		    <p th:text="*{position}">venue</p>
+		  </div>
+	  	  <div>
+		    <label for="password">パスワード</label><br />
+		    <p th:text="*{password}">cost</p>
+		  </div>
+	  	  <div>
+
+		</div>
+		<div>
+	        <input type="hidden" name="name" th:value="*{name}" />
+	        <input type="hidden" name="team" th:value="*{team}" />
+	        <input type="hidden" name="phone" th:value="*{phone}" />
+	        <input type="hidden" name="email" th:value="*{email}" />
+	        <input type="hidden" name="address" th:value="*{address}" />
+	        <input type="hidden" name="position" th:value="*{position}" />
+	        <input type="hidden" name="password" th:value="*{password}" />
+
+	        <input type="submit" value="送信" />
+    </div>
+
+	</form>
+
+</body>
+</html>

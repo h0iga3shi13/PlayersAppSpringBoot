@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>add</title>
+</head>
+<body>
+  <!-- th:replaceを使用して、 ヘッダー用のフラグメントを読込みます -->
+  <div th:replace="common :: header_fragment"></div>
+	<h1>ユーザー新規登録</h1>
+	<form th:action="@{/addconfirm}" th:object="${addRequest}" method="post">
+		<table>
+			<tr>
+				<th class="cell_title">ユーザー名</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{name}">
+				<p th:errors="*{name}" class="error-message"></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="cell_title">所属チーム名（無所属の場合は”所属なし”）</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{team}">
+				<p th:errors="*{team}" class="error-message"></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="cell_title">電話番号</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{phone}">
+				<p th:errors="*{phone}" class="error-message"></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="cell_title">メールアドレス</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{email}">
+				<p th:errors="*{email}" class="error-message"></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="cell_title">住所</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{address}">
+				<p th:errors="*{address}" class="error-message"></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="cell_title">守れるポジション（複数可）</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{position}">
+				<p th:errors="*{position}" class="error-message"></p>
+				</td>
+			</tr>
+			<tr>
+				<th class="cell_title">パスワード</th>
+				<th class="cell_required"></th>
+				<td><input type="text" th:field="*{password}">
+				<p th:errors="*{password}" class="error-message"></p>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="確認ページへ">
+	</form>
+<body>
+
+</body>
+</html>
