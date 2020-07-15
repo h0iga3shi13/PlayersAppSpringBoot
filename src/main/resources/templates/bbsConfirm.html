@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>confirm</title>
+</head>
+<body>
+  <!-- th:replaceを使用して、 ヘッダー用のフラグメントを読込みます -->
+  <div th:replace="common :: header_fragment"></div>
+	<h1>確認用ページ</h1>
+	<form th:action="@{/create}" th:object="${formRequest}" method="post">
+		  <div>
+		    <label for="name">ユーザー名</label><br />
+		    <p th:text="*{name}">name</p>
+		  </div>
+		  <div>
+		    <label for="team">チーム名</label><br />
+		    <p th:text="*{team}">team</p>
+		  </div>
+		  <div>
+		    <label for="event">開催日</label><br />
+		    <td th:text="*{#temporals.format(event, 'yyyy/MM/dd')}"></td>
+		  </div>
+		  <div>
+		    <label for="deadline">募集期日</label><br />
+		    <td th:text="*{#temporals.format(deadline, 'yyyy/MM/dd')}"></td>
+		  </div>
+		  <div>
+		    <label for="area">エリア</label><br />
+		    <p th:text="*{area}">area</p>
+		  </div>
+	  	  <div>
+		    <label for="venue">会場</label><br />
+		    <p th:text="*{venue}">venue</p>
+		  </div>
+	  	  <div>
+		    <label for="cost">会費</label><br />
+		    <p th:text="*{cost}">cost</p>
+		  </div>
+	      <div>
+		    <label for="capacity">募集人数</label><br />
+		    <p th:text="*{capacity}">capacity</p>
+		  </div>
+		  <div>
+		    <label for="level">募集レベル</label><br />
+		    <p th:text="*{level}">level</p>
+		  </div>	  	  <div>
+		    <label for="type">種類</label><br />
+		    <p th:text="*{type}">type</p>
+		  </div>
+	  	  <div>
+		    <label for="text">本文</label><br />
+		    <p th:text="*{text}">text</p>
+		  </div>
+	  	  <div>
+
+		</div>
+		<div>
+	        <input type="hidden" name="name" th:value="*{name}" />
+	        <input type="hidden" name="team" th:value="*{team}" />
+	        <input type="hidden" name="event" th:value="*{#temporals.format(event, 'yyyy/MM/dd')}" />
+	        <input type="hidden" name="deadline" th:value="*{#temporals.format(deadline, 'yyyy/MM/dd')}" />
+	        <input type="hidden" name="area" th:value="*{area}" />
+	        <input type="hidden" name="venue" th:value="*{venue}" />
+	        <input type="hidden" name="cost" th:value="*{cost}" />
+	        <input type="hidden" name="capacity" th:value="*{capacity}" />
+	        <input type="hidden" name="level" th:value="*{level}" />
+	        <input type="hidden" name="type" th:value="*{type}" />
+	        <input type="hidden" name="text" th:value="*{text}" />
+
+
+	        <input type="submit" value="送信" />
+    </div>
+
+	</form>
+
+</body>
+</html>

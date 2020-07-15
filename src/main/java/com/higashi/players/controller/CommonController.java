@@ -29,12 +29,10 @@ public class CommonController {
 	 *
 	 */
 	@RequestMapping(value = "/bbs", method = RequestMethod.GET)
-	//	public String bbs(Model model) {
-	//		return "bbs";
 	public String list(Model model) {
 		List<BBS> bbslist = bbsService.searchAll();
 		model.addAttribute("bbslist", bbslist);
-		return "bbs.html";
+		return "bbs";
 	}
 
 	/*
@@ -43,25 +41,25 @@ public class CommonController {
 	 */
 	//	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	//	public String add(Model model) {
-	//		return "add.html";
+	//		return "add";
 	//	}
 
 	// team画面
 	@RequestMapping(value = "/team", method = RequestMethod.GET)
 	public String team(Model model) {
-		return "team.html";
+		return "team";
 	}
 
 	// login画面
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
-		return "login.html";
+		return "login";
 	}
 
 	// confirm画面
 	@RequestMapping(value = "/confirm", method = RequestMethod.GET)
 	public String confirm(Model model) {
-		return "confirm.html";
+		return "confirm";
 	}
 
 }

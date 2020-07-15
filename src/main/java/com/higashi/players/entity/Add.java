@@ -13,6 +13,7 @@ import lombok.Data;
 
 /*
  * Add Entity
+ * DBに入れる値を格納するクラス
  */
 @Entity
 @Data
@@ -30,7 +31,7 @@ public class Add {
 	/*
 	 * 名前
 	 */
-	@Column(name = "name")
+	@Column(name = "username")
 	private String name;
 
 	/*

@@ -2,7 +2,7 @@ package com.higashi.players.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,7 +13,7 @@ import lombok.Data;
  * 会員登録form リクエストデータ
  */
 @Data
-public class AddRequest implements Serializable {
+public class AddForm implements Serializable {
 
 	/*
 	 * 名前(ユーザー名)
@@ -34,7 +34,6 @@ public class AddRequest implements Serializable {
 	 */
 	@NotBlank(message = "電話番号を入力してください")
 	@Min(0)
-	@Max(20)
 	private String phone;
 
 	/*
@@ -42,6 +41,7 @@ public class AddRequest implements Serializable {
 	 */
 	@NotBlank(message = "メールアドレスを入力してください")
 	@Size(max = 128)
+	@Email
 	private String email;
 
 	/*

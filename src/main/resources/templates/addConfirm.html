@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="UTF-8">
 <title>confirm</title>
 </head>
@@ -9,7 +9,6 @@
   <div th:replace="common :: header_fragment"></div>
 	<h1>確認用ページ</h1>
 	<form th:action="@{/addcreate}" th:object="${addRequest}" method="post">
-		<div th:object="${addRequest}">
 		  <div>
 		    <label for="name">ユーザー名</label><br />
 		    <p th:text="*{name}">name</p>

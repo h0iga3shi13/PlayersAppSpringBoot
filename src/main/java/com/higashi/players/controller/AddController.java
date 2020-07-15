@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.higashi.players.dto.AddRequest;
+import com.higashi.players.dto.AddForm;
 import com.higashi.players.entity.Add;
 import com.higashi.players.service.AddService;
 
@@ -21,7 +23,7 @@ public class AddController {
 
 	//	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	//	public String add(Model model) {
-	//		return "add.html";
+	//		return "add";
 	//	}
 
 	/**
@@ -33,7 +35,7 @@ public class AddController {
 	public String displayList(Model model) {
 		List<Add> userlist = addService.searchAll();
 		model.addAttribute("userlist", userlist);
-		return "addlist.html";
+		return "addlist";
 	}
 
 	/**
@@ -42,26 +44,30 @@ public class AddController {
 	//	 * @return form画面
 	//	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String displayform(Model model) {
-		model.addAttribute("addRequest", new AddRequest());
-		return "add.html";
+	public String displayform(@ModelAttribute("addRequest") AddForm addRequest, Model model) {
+		return "add";
 	}
 
 	/*
 	 * 新規ユーザー登録 送信
 	 */
 	@RequestMapping(value = "/addcreate", method = RequestMethod.POST)
-	public String create(@ModelAttribute AddRequest addRequest, Model model) {
+	public String create(AddForm addRequest) { //formの中身をdbに送信
 		// add情報の登録
 		addService.create(addRequest);
-		return "redirect:/addlist.html"; // URLの再読み込み
+		return "redirect:/addlist"; // URLの再読み込み
 	}
 
 	// 入力情報確認
-	@RequestMapping(value = "/addconfirm", method = RequestMethod.POST)
-	public String confirm(AddRequest addRequest, Model model) {
-		model.addAttribute("addRequest", addRequest);
-		return "addconfirm.html";
+	@RequestMapping(value = "/add/confirm", method = RequestMethod.POST)
+	public String confirm(@Validated @ModelAttribute("addRequest") AddForm addRequest,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "add";
+		}
+
+		//		model.addAttribute("addRequest", addRequest);
+		return "addConfirm";
 	}
 
 	/**
@@ -76,7 +82,7 @@ public class AddController {
 	@RequestMapping(value = "/adddelete", method = RequestMethod.POST)
 	public String delete(Long id) {
 		addService.delete(id);
-		return "redirect:/addlist.html";
+		return "redirect:/addlist";
 	}
 
 }

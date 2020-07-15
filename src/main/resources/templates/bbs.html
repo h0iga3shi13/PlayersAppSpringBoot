@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BBS</title>
+<link href="/css/bbs.css" rel="stylesheet"></link>
+</head>
+<body>
+  <!-- th:replaceを使用して、 ヘッダー用のフラグメントを読込みます -->
+  <div th:replace="common :: header_fragment"></div>
+	<h1>BBS</h1>
+	<a th:href="@{/bbs/form}">入力フォームへ</a>
+	<table>
+		<thead>
+			<tr>
+				<td>募集者</td>
+				<td>チーム名</td>
+				<td>開催日</td>
+				<td>募集期日</td>
+				<td>募集エリア</td>
+				<td>会場</td>
+				<td>会費</td>
+				<td>募集人数</td>
+				<td>募集レベル</td>
+				<td>種類</td>
+				<td>本文</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bbs : ${bbslist}" th:object="${bbs}">
+				<td th:text="*{name}"></td>
+				<td th:text="*{team}"></td>
+				<td th:text="*{#temporals.format(event, 'yyyy/MM/dd')}"></td>
+				<td th:text="*{#temporals.format(deadline, 'yyyy/MM/dd')}"></td>
+				<td th:text="*{area}"></td>
+				<td th:text="*{venue}"></td>
+				<td th:text="*{cost}"></td>
+				<td th:text="*{capacity}"></td>
+				<td th:text="*{level}"></td>
+				<td th:text="*{type}"></td>
+				<td th:text="*{text}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

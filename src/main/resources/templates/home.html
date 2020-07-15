@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BBS</title>
+</head>
+<body>
+  <!-- th:replaceを使用して、 ヘッダー用のフラグメントを読込みます -->
+  <div th:replace="common :: header_fragment"></div>
+	<h1>HOME</h1>
+	<table>
+		<thead>
+			<tr>
+				<td><a th:href="@{/bbs}">タイトル</a></td>
+				<td>募集者</td>
+				<td>開催日</td>
+				<td>募集エリア</td>
+				<td>種類</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bbs : ${bbslist}" th:object="${bbs}">
+				<td th:text="*{name}"></td>
+				<td th:text="*{event}"></td>
+				<td th:text="*{area}"></td>
+				<td th:text="*{type}"></td>
+			</tr>
+		</tbody>
+	</table>
+  </body>
+</html>
